@@ -1,0 +1,213 @@
+@font-face {
+    font-family: "Roboto";
+    src: url("/font/RobotoMono-VariableFont_wght-1.ttf") format("truetype");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Emoji";
+    src: url("/font/NotoEmoji-Regular.ttf") format("truetype");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Material Symbols Outlined';
+    font-style: normal;
+    font-weight: 100 700;
+    src: url("/font/kJEhBvYX7BgnkSrUwT8OhrdQw4oELdPIeeII9v6oFsI.woff2") format('woff2');
+}
+
+:root {
+    --text-dark: #ffffff;
+    --theme-2: #b15c1f;
+    --theme-3: #733b13;
+    --theme-5: #794119;
+    --theme-4: #0f1a19;
+    --theme-6: #061614db;
+    --theme-8: #00000059;
+    --theme-9: #102422;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    display: grid;
+    grid-template-columns: 0.5fr 1.5fr;
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
+    background: #061614;
+}
+
+button {
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+    border: none;
+    background: none;
+    font-family: 'Roboto';
+}
+
+%thumb {
+    border: 0;
+    display: flex;
+    align-items: center;
+    user-select: none;
+    padding: 5px;
+    color: white;
+    backdrop-filter: blur(5px);
+    font-size: 18px;
+    cursor: pointer;
+    box-shadow: 4px 4px 90px #0000003b inset, 20px 0px 1px #0000009e;
+    padding: 5px;
+    height: 70px;
+    user-select: none;
+    transition: all 1s ease;
+    font-size: 18px;
+    white-space: nowrap;
+
+    img {
+        object-fit: cover;
+        border-radius: 5rem;
+        width: 60px;
+        height: 60px;
+        box-shadow: inset 4px 4px 15px #0000006b;
+        margin: 0 5px 0 0;
+    }
+}
+
+%thumb:hover, %thumb:focus-visible {
+    background: #00000013;
+    outline: none;
+    translate: -3px;
+}
+
+#contatos {
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+    box-shadow: 4px 4px 15px #0000009e;
+    button {
+        @extend %thumb;
+    }
+}
+
+#searchbar {
+    position: fixed;
+    z-index: 3;
+    top: 15px;
+    left: calc(50% - 250px);
+    width: 500px;
+    padding: 10px;
+    border-radius: 50rem;
+    background: #41230e;
+    border: #653b1e 1px solid;
+    color-scheme: only light;
+    color: white;
+    outline: none;
+    text-align: center;
+    display: none;
+    box-shadow: 0 0 60px 20px #040f0e;
+}
+
+#sortNav {
+    font-family: 'Roboto';
+    font-size: 15px;
+    position: absolute;
+    flex-direction: column;
+    align-items: flex-start;
+    background: #101716;
+    z-index: 2;
+    padding: 8px 5px;
+    border-radius: 0 1rem 1rem 1rem;
+    border: 0.5px solid #212f2d;
+    color-scheme: only light;
+    display: none;
+
+    p {
+        margin: 3px 0;
+        width: -webkit-fill-available;
+        text-align: left;
+        display: flex;
+        align-items: center;
+        padding-bottom: 5px;
+        border-bottom: 2px solid;
+        border-image: linear-gradient(to left, #0000ff00, #ffffff12);
+        border-image-slice: 1;
+    }
+}
+
+#sort span {
+    margin-right: 5px;
+}
+
+#menu {
+    background: #00000075;
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
+#homeSettings {
+    margin: 0 0 0 auto;
+    padding: 0 5px;
+    border-bottom: 2px solid;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    color-scheme: only light;
+    button {
+        padding: 0;
+    }
+}
+
+#homeSettings * {
+    font-size: 25px;
+    margin: 0 1px;
+}
+
+#pesquisar {
+    resize: none;
+    outline: none;
+    border-radius: 50rem;
+    margin: 0 0 0 5px;
+    font-size: 18px;
+    padding: 8px;
+    background: var(--theme-8);
+    color: white;
+    border: 0;
+    transition: all 0.5s ease;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@keyframes myAnim {
+    0% {
+        box-shadow: none;
+    }
+
+    100% {
+        box-shadow: 0 0 0 2px #41230e, 0 0 0 5px var(--theme-8);
+    }
+}
+
+#pesquisar:hover,
+#pesquisar:focus-visible {
+    font-size: 20px;
+    animation: myAnim 2s alternate infinite;
+}
+
+#pesquisar::-webkit-scrollbar {
+    width: 0;
+}
