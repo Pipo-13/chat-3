@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-                <link rel="stylesheet" href="/style/style.css" media="all">
+                <link rel="stylesheet" as="style" href="/style/style.css" media="all">
                 <title>chat</title>
             <link rel="icon" sizes="48x48" href="/favicon.ico">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" sizes="any" href="/favicon.svg" type="image/svg+xml">
 </head>
             <body>
-                <div style="grid-area: 1 / 1 / 3 / 2;background: var(--theme-5);">   
+                <div style="grid-area: 1 / 1 / 3 / 2;background: var(--theme-5);overflow: hidden;">   
                     <nav id="menu">
                         <button class="material-symbols-outlined" tabindex="0" id="pesquisar">
                             search
@@ -39,40 +39,49 @@
                             </nav>
                         </button>
                         <div id="homeSettings">
-                            <button class="material-symbols-outlined lazy" tabindex="0" id="settings">settings</button>
-                            <button class="material-symbols-outlined lazy" tabindex="0" id="extension" style="text-decoration: none;">extension</button>
-                            <button class="material-symbols-outlined lazy" id="add" popovertarget="newChatMenu">add</button>
+                            <button class="material-symbols-outlined lazy" tabindex="0" id="settings" content="settings"></button>
+                            <button class="material-symbols-outlined lazy" tabindex="0" id="extension" content="extension" style="text-decoration: none;"></button>
+                            <button class="material-symbols-outlined lazy" id="add" popovertarget="newChatMenu" content="add">add</button>
                         </div>
                     </nav>
                     <div id="contatos">
-                        <button>
-                            <img src="https://wallpapers.com/images/hd/giga-chad-professional-model-jzxa3265ef02fkba.jpg" alt="name" height="50px" width="50px" load="lazy">
+                        <button class="thumb">
+                            <img src="img/groupImg.svg" alt="name" height="50px" width="50px" load="lazy">
                             name
-                        </button><button>
+                        </button><button class="thumb">
                             <img src="img/groupImg.svg" alt="valor" height="50px" width="50px" load="lazy">
                             valor
                         </button>
                     </div>
                 </div>
                 <div id="chat" style="display:grid" class="lazy-bg" data-bg="/img/chat.svg">
-                    <nav><img src="img/groupImg.svg" alt="valor" load="lazy">valor</nav>
+                    <nav id="header">
+                        <button class="material-symbols-outlined lazy" content="arrow_back_ios"></button>
+                        <img src="img/groupImg.svg" alt="valor" load="lazy">
+                        <span>valor<span>
+                    </span></span></nav>
+                    <!--uma alternativa seria usar o iframe-->
+                    <div id="msgArea"></div>
+                    <div id="inputBox" onclick="this.firstElementChild.focus()">
+                        <input type="text" placeholder="vontade de falar...">
+                    </div>
                 </div>
-                <script>
+                <script async="">
                     document.addEventListener("DOMContentLoaded", () => {
-                        document.querySelectorAll(".lazy-bg").forEach((e) => {
-                        var image = new Image();
-                        image.src = e.getAttribute("data-bg");
-
-                        image.onload = function() {
-                            e.style.backgroundImage = "url('" + image.src + "')";
-                            e.classList.add("loaded");
-                        };
+                        document.querySelectorAll(".lazy-bg").forEach(e => {
+                            const image = new Image();
+                            image.src = e.getAttribute("data-bg");
+                            image.onload = e.style.backgroundImage = "url('" + image.src + "')";
                         });
-                        document.querySelectorAll('button.lazy').forEach(b => {
-                            b.classList.remove('lazy')
-                        })
                     });
+                    document.fonts.ready.then(() => {
+                        document.querySelectorAll('button.lazy').forEach(b => {
+                            b.innerText = b.getAttribute("content");
+                            b.classList.remove('lazy');
+                        })
+                    })
                  </script>
+                 <script src="/script/main.js"></script>
             
         
     </body></html>

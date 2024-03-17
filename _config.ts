@@ -32,8 +32,13 @@ site
 .use(code_highlight())
 .use(date())
 .use(favicon())
-.use(sass())
+.use(sass({
+  options: {
+    style: "compressed"
+  }}
+))
 .copy("img")
-.copy("font");
+.copy("font")
+.copy("script");
 
 export default site;
